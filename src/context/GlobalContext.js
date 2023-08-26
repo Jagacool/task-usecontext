@@ -1,11 +1,15 @@
-import React, { createContext, useReducer, useContext } from "react";
+// src/context/GlobalContext.js
+import { createContext, useContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
+  products: [], // Replace with your product data
   cart: [],
 };
 
-export const GlobalContext = createContext(initialState);
+const GlobalContext = createContext(initialState);
+
+export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -15,8 +19,4 @@ export const GlobalProvider = ({ children }) => {
       {children}
     </GlobalContext.Provider>
   );
-};
-
-export const useGlobalContext = () => {
-  return useContext(GlobalContext);
 };
