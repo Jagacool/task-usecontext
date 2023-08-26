@@ -1,15 +1,15 @@
-// src/Cart.js
-import React from "react";
-import { useGlobalContext } from "./context/context";
+import React, { useContext } from "react";
+import CartItem from "./CartItem";
+import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
-  const { state, dispatch } = useGlobalContext();
-
-  // Implement rendering the cart items, increasing and decreasing quantity, etc.
+  const { cartItems } = useContext(CartContext);
 
   return (
-    <div>
-      {/* Render cart items and functionality */}
+    <div className="cart">
+      {cartItems.map((cartItem) => (
+        <CartItem key={cartItem.product.id} cartItem={cartItem} />
+      ))}
     </div>
   );
 };
